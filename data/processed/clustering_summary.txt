@@ -1,0 +1,5 @@
+PCA reaches 80% explained variance with 4 components.
+K-means: 2 components, k=3, silhouette=0.450, smallest group=27.2%.
+DBSCAN: 5 components, eps=1.2, min_samples=5, silhouette=0.361, noise=0.2%, largest group=99.1%.
+Final method: K-means. Every customer has cluster_final.
+Silhouette is measured on a fixed sample of up to 1000 customers. DBSCAN metrics exclude noise, and the noise rate is shown separately.

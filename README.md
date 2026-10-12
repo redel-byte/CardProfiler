@@ -1,5 +1,22 @@
 # Customer Segmentation & Classification - Credit Card Customer Data
 
+## Feature Stories 1-3: run the completed workflow
+
+**Added workflow:** [`notebooks/stories_1_to_3.py`](notebooks/stories_1_to_3.py) runs EDA, cleaning, PCA, K-means, DBSCAN, and final cluster selection from the repository dataset. The updated [`notebooks/CardProfiler_cleaning.ipynb`](notebooks/CardProfiler_cleaning.ipynb) covers Stories 2 and 3 with small, explained cells and saved outputs; Story 1 stays in `CardProfiler_EDA_repport.ipynb`. Comments beginning with `ADDED` identify the new notebook work. The earlier cleaning notebook is preserved as `CardProfiler_cleaning_before_update.ipynb`.
+
+From the project root:
+
+```bash
+uv sync
+uv run python notebooks/stories_1_to_3.py
+```
+
+The script reads `data/raw/dataset.csv`. It writes the cleaned data, clustering matrix, search tables, and decision summary to `data/processed/`. It writes nine figures to `repport/stories_1_to_3/`.
+
+**How the final choice is made:** K-means candidates must have no cluster below 10% or above 90%. The candidate with the highest sampled silhouette among those is selected. DBSCAN replaces it only if DBSCAN assigns every customer to a cluster, has the same size balance, and improves silhouette by at least 0.05. Read `data/processed/clustering_summary.txt` for the values from your run. The silhouette calculation uses a fixed sample of up to 1,000 customers for practical run time; DBSCAN's score excludes noise and its noise percentage is shown separately.
+
+This workflow stops at Feature Story 3. Business segment names and the supervised `target` belong to Feature Story 4.
+
 ## Overview
 
 This project builds an end-to-end machine learning workflow for **customer segmentation and segment prediction** from credit-card usage behavior.
